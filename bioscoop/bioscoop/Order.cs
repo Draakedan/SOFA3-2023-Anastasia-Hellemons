@@ -9,8 +9,11 @@ namespace bioscoop
 {
     internal class Order
     {
+        [JsonProperty]
         private int OrderNr { get; set; }
+        [JsonProperty]
         private bool IsStudentOrder { get; set; }
+        [JsonProperty]
         private List<MovieTicket> Tickets { get; set; }
 
         public Order(int orderNr, bool isStudentOrder)
@@ -73,21 +76,22 @@ namespace bioscoop
             string content = "";
             if (exportFormat == TicketExportFormat.JSON)
             {
-                content = JsonConvert.SerializeObject(this);
+                content = JsonConvert.SerializeObject(this, Formatting.Indented);
+                Console.WriteLine(content);
             }
             else
             {
                 content += "Order: " + OrderNr + "\nstudentOrder: " + IsStudentOrder + "\n";
                 foreach (MovieTicket ticket in Tickets)
                 {
-                    content += "\t" + ticket.ToString() + "\n";
+                    content += "\t" + ticket.ToString() + "\n\n";
                 }
             }
             TextWriter? writer = null;
             try
             {
 
-                writer = new StreamWriter("C:\\Users\\Public\\Downloads", false);
+                writer = new StreamWriter("content.txt", false);
                 writer.Write(content);
             }
             finally

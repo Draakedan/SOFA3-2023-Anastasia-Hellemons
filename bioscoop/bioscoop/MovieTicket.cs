@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,13 @@ namespace bioscoop
 {
     internal class MovieTicket
     {
+        [JsonProperty]
         private int RowNr { get; set; }
+        [JsonProperty]
         private int SeatNr { get; set; }
+        [JsonProperty]
         private bool IsPremium { get; set; }
+        [JsonProperty]
         public MovieScreening MovieScreening { get; init; }
 
         public MovieTicket(MovieScreening movieScreening, bool isPremiumReservation, int seatRow, int seatNr)
