@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace bioscoop
 {
-    internal class MovieScreening
+    public class MovieScreening
     {
         [JsonProperty]
         private DateTime DateAndTime { get; set; }

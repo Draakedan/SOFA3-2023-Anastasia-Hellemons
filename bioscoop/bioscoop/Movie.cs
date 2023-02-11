@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace bioscoop
 {
-    internal class Movie
+    public class Movie
     {
         [JsonProperty]
         private string Title { get; set; }
