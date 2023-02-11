@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace bioscoop
 {
-    internal class Order
+    public class Order
     {
         [JsonProperty]
         private int OrderNr { get; set; }
@@ -39,7 +39,7 @@ namespace bioscoop
             if (this.IsStudentOrder)
                 foreach (MovieTicket ticket in Tickets)
                 {
-                    if (Tickets.IndexOf(ticket) % 2 != 0)
+                    if (Tickets.IndexOf(ticket) % 2 == 0)
                     {
                         if (ticket.IsPremiumTicket())
                             price += ticket.GetPrice() + 2;
@@ -47,20 +47,18 @@ namespace bioscoop
                     }
                 }
             else
+            {
                 foreach (MovieTicket ticket in Tickets)
                 {
-                    if (ticket.ToString().Contains("Sunday") || ticket.ToString().Contains("Saturday"))
+                    if (IsWeekend(ticket))
                     {
                         if (ticket.IsPremiumTicket())
                             price += ticket.GetPrice() + 3;
                         else price += ticket.GetPrice();
-
-                        if (Tickets.Count >= 6)
-                            price *= 0.9;
                     }
                     else
                     {
-                        if (Tickets.IndexOf(ticket) % 2 != 0)
+                        if (Tickets.IndexOf(ticket) % 2 == 0)
                         {
                             if (ticket.IsPremiumTicket())
                                 price += ticket.GetPrice() + 3;
@@ -68,7 +66,16 @@ namespace bioscoop
                         }
                     }
                 }
+                if (IsWeekend(Tickets.ElementAt(0)))
+                    if (Tickets.Count >= 6)
+                        price *= 0.9;
+            }
             return price;
+        }
+
+        private static bool IsWeekend(MovieTicket ticket)
+        {
+            return (ticket.ToString().Contains("Sunday") || ticket.ToString().Contains("Saturday"));
         }
 
         public void Export(TicketExportFormat exportFormat)

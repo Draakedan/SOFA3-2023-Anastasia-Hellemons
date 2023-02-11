@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bioscoop
 {
-    internal enum TicketExportFormat
+    public enum TicketExportFormat
     {
         PLAINTEXT,
         JSON
