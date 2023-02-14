@@ -31,8 +31,8 @@ order1.AddSeatReservation(ticket4s1);
 order1.AddSeatReservation(ticket5s1);
 order1.AddSeatReservation(ticket6s1);
 Console.WriteLine(order1.CalculatePrice());
-order1.Export(TicketExportFormat.PLAINTEXT);
-order1.Export(TicketExportFormat.JSON);
+order1.Export(TicketExportFormat.PLAINTEXT, content, content);
+order1.Export(TicketExportFormat.JSON, content, content);
 
 
 Order order2 = new(2, false);

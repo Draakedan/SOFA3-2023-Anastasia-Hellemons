@@ -67,9 +67,10 @@ namespace bioscoop
                         }
                     }
                 }
-                if (IsWeekend(Tickets.ElementAt(0)))
-                    if (Tickets.Count >= 6)
-                        price *= 0.9;
+                if (IsWeekend(Tickets.ElementAt(0)) && Tickets.Count >= 6)
+                {
+                    price *= 0.9;
+                }
             }
             return price;
         }
@@ -79,9 +80,8 @@ namespace bioscoop
             return (ticket.ToString().Contains("Sunday") || ticket.ToString().Contains("Saturday"));
         }
 
-        public void Export(TicketExportFormat exportFormat)
+        public void Export(TicketExportFormat exportFormat, string content)
         {
-            string content = "";
             if (exportFormat == TicketExportFormat.JSON)
             {
                 content = JsonConvert.SerializeObject(this, Formatting.Indented);
