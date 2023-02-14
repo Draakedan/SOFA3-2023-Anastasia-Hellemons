@@ -44,7 +44,5 @@ jobs:
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"Draakedan_SOFA3-2023-Anastasia-Hellemons" /o:"3246t456fgbfddgfhjytu7567546456tgtfhgjy7tu8567546435trtgghjgyt7u856756325gfdhbnfgnmhgjkrhrtwere4756867hbvcfgb" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build bioscoop\bioscoop.sln --no-incremental
-          dotnet build bioscoop/TestProject1/TestProject1.csproj --no-incremental
-          dotnet test bioscoop/TestProject1/TestProject1.csproj --collect "Code Coverage"
           dotnet test bioscoop\bioscoop.sln --collect "Code Coverage"
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
