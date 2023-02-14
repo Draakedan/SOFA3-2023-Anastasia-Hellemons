@@ -42,8 +42,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          dotnet tool install --global dotnet-sonarscanner
-          dotnet sonarscanner begin /k:"Draakedan_SOFA3-2023-Anastasia-Hellemons" /o:"3246t456fgbfddgfhjytu7567546456tgtfhgjy7tu8567546435trtgghjgyt7u856756325gfdhbnfgnmhgjkrhrtwere4756867hbvcfgb" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Draakedan_SOFA3-2023-Anastasia-Hellemons" /o:"3246t456fgbfddgfhjytu7567546456tgtfhgjy7tu8567546435trtgghjgyt7u856756325gfdhbnfgnmhgjkrhrtwere4756867hbvcfgb" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build bioscoop\bioscoop.sln --no-incremental
-          dotnet test bioscoop\TestProject1\TestProject1.csproj --collect "Code Coverage"
-          dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          dotnet test bioscoop\bioscoop.sln --collect "Code Coverage"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
