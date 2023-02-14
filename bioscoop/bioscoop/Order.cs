@@ -80,8 +80,9 @@ namespace bioscoop
             return (ticket.ToString().Contains("Sunday") || ticket.ToString().Contains("Saturday"));
         }
 
-        public void Export(TicketExportFormat exportFormat, string content)
+        public void Export(TicketExportFormat exportFormat)
         {
+            string content = "";
             if (exportFormat == TicketExportFormat.JSON)
             {
                 content = JsonConvert.SerializeObject(this, Formatting.Indented);
